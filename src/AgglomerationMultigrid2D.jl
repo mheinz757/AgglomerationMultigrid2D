@@ -2,10 +2,13 @@ module AgglomerationMultigrid2D
 
 # import needed packages
 import LinearAlgebra as la
-import LinearAlgebra: ldiv!, \
 import SparseArrays as sp
 import SuiteSparse
-# import BlockDiagonals as bd
+
+import Base: *, \
+import Base: Array, Matrix, show, similar, size
+import LinearAlgebra: ldiv!, lu, mul!
+import SparseArrays: sparse
 
 abstract type AbstractElement end
 abstract type AbstractAgglomeratedDgElement <: AbstractElement end
@@ -13,6 +16,9 @@ abstract type AbstractMesh end
 abstract type AbstractSmoother end
 
 include("meshes.jl")
+include("meshio.jl")
+include("refinement.jl")
+
 # include("boundary_conditions.jl")
 # include("legendre.jl")
 # include("gaussquad.jl")
