@@ -10,5 +10,5 @@ mesh = aggmg.import_obj( testPath * "/std_plane.obj" );
 mesh2 = aggmg.refine_quad( mesh );
 
 s = get_default_msession();
-plot_mesh( s, mesh; vertIndex=true, edgeIndex=true, faceIndex=true );
-plot_mesh( s, mesh2; vertIndex=true, edgeIndex=true, faceIndex=true );
+aggmg.plot_mesh( s, mesh; vertIndex=true, edgeIndex=true, faceIndex=true );
+aggmg.plot_mesh( s, mesh2 );
