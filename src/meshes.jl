@@ -270,7 +270,7 @@ end
 
 Determines if an edge is a boundary edge of the 2-dimensional mesh
 """
-function is_boundary( edge::Vertex )
+function is_boundary( edge::Edge )
     return edge.mFaces[2] < 1;
 end
 
