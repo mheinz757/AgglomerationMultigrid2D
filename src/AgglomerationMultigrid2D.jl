@@ -4,6 +4,7 @@ module AgglomerationMultigrid2D
 import LinearAlgebra as la
 import SparseArrays as sp
 import SuiteSparse
+import MATLAB as ml
 
 import Base: *, \
 import Base: Array, Matrix, show, similar, size
@@ -17,6 +18,7 @@ abstract type AbstractSmoother end
 
 include("meshes.jl")
 include("meshio.jl")
+include("meshplot.jl")
 include("refinement.jl")
 
 # include("boundary_conditions.jl")
