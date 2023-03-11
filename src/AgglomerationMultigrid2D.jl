@@ -18,14 +18,14 @@ abstract type AbstractSmoother end
 
 include("meshes.jl")
 include("meshio.jl")
-include("meshplot.jl")
 include("refinement.jl")
 
-# include("boundary_conditions.jl")
-# include("legendre.jl")
-# include("gaussquad.jl")
-# include("reference_element.jl")
+include("legendre.jl")
+include("bivariate_monomial.jl")
+include("gauss_quad.jl")
+include("reference_element.jl")
 
+# include("boundary_conditions.jl")
 # include("cgMesh.jl")
 # include("dgMesh.jl")
 # include("agglomeratedDgMesh.jl")
@@ -35,5 +35,7 @@ include("refinement.jl")
 
 # include("meshHeirarchy.jl")
 # include("solvers.jl")
+
+include("meshplot.jl")
 
 end # end of module
