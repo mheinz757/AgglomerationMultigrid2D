@@ -73,3 +73,54 @@ function plot_mesh( s, mesh::Mesh; vertIndex=false, edgeIndex=false, faceIndex=f
 	end
 
 end
+
+############################################################################################
+# Plot mesh construct
+############################################################################################
+
+"""
+	plot_ref_el( s, refEl::ReferenceElement; vertIndex=false )
+
+Plot edges and vertices of a reference element
+
+# Arguments
+- `s::MSession`: MATLAB session
+- `mesh::Mesh`: mesh object
+"""
+function plot_ref_el( s, refEl::ReferenceElement; vertIndex=false )
+
+	# plot edge
+	if refEl.mShape == :tri
+		xEdge = [ 0.0, 1.0, 0.0, 0.0 ];
+		yEdge = [ 0.0, 0.0, 1.0, 0.0 ];
+	elseif refEl.mShape == :quad
+		xEdge = [ -1.0, 1.0, 1.0, -1.0, -1.0 ];
+		yEdge = [ -1.0, -1.0, 1.0, 1.0, -1.0 ];
+	end
+
+	ml.put_variable( s, :xEdge, xEdge );
+	ml.put_variable( s, :yEdge, yEdge );
+	ml.eval_string( s, "plot( xEdge, yEdge, \"k-\" )" ); 
+
+	# plot nodes
+	x = refEl.mNodesX[:,1];
+	y = refEl.mNodesX[:,2];
+
+	ml.eval_string( s, "hold on" );
+	ml.put_variable( s, :x, x );
+	ml.put_variable( s, :y, y );
+	ml.eval_string( s, "plot( x, y, \"ko\" )" ); 
+
+	# Show vertex indices
+	if vertIndex
+		ml.eval_string( s, "hold on" );
+		for i in eachindex(x)
+			ml.put_variable( s, :cX, x[i] ); 
+			ml.put_variable( s, :cY, y[i] ); 
+			ml.put_variable( s, :label, string(i) );
+			ml.eval_string( s, "text(cX,cY,label)" );
+		end
+		ml.eval_string( s, "hold off" );
+	end
+
+end
